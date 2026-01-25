@@ -18,6 +18,7 @@ She knows that there is a tool out there that can give probability scores for ea
 - [Features](#features)
 - [Usage](#usage)
 - [Future work](#future-work)
+- [Challenges](#challenges)
 
 ---
 
@@ -57,7 +58,17 @@ This section describes the features built in the project.
 
 ## Usage
 
+This section details a GIF of how to use the tool and how to run it. The aim of this section is to help the user run the tool and also show the running features of the tool
+
 ---
 
 ## Future work
+
+This section details the work that can be done as an extension to this work
+
+---
+
+## Challenges
+
+This section describes the challenges faced during development.
 
