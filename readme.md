@@ -1,5 +1,5 @@
 # Analysis of emotional responses in Dutch TV talk shows
-![Image](images/shiela.png)
+![Image](images/shiela.png)  
 Shiela is a media studies scholar who is interested in the analysis of emotional responses within Dutch talk shows. She feels that certain popular talk show hosts are able to get an increased emotional response from their guests over other talk show hosts even with same topics discussed with same guests between different shows.
 
 To validate her assumption, she wants to use a tool that can detect the type of emotions based on video input. This way she does not have to watch all the videos she collected in her research corpus. 
