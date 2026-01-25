@@ -1,6 +1,6 @@
 # Analysis of emotional responses in Dutch TV talk shows
 <p align = "center">
-    <img src="![Image](images/shiela.png)" height = "200" width = "300"/>
+    <img src="images/shiela.png" height = "200" width = "200"/>
 </p>
 
 ![Image](images/shiela.png)  
