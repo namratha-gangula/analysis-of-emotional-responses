@@ -1,1 +1,3 @@
 .DS_Store
+.projectenv
+.__pycache__
