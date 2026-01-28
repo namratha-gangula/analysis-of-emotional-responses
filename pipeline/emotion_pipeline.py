@@ -1,5 +1,7 @@
 import logging
+import cv2
 from video_loader import VideoLoader
+from frame_extractor import FrameExtractor
 from pathlib import Path
 
 class EmotionPipeline:
@@ -10,4 +12,8 @@ class EmotionPipeline:
         Connects all parts of code together
         '''
         logging.info("We are in emotion pipeline")
-        VideoLoader.user_input(input_path)
+        video_exists = VideoLoader.user_input(input_path)
+        if video_exists:
+            FrameExtractor.extract_frame(input_path)
+            
+
