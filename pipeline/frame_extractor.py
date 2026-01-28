@@ -10,18 +10,31 @@ class FrameExtractor:
         '''
         Extract the frame from the video and return the result.
         '''
+        frames = []
         open_video_file = cv2.VideoCapture(video_path)
         logging.info("Path given by the user to the location of the video", Path(video_path).resolve())
         logging.info("Does the path exist?:", Path(video_path).exists())
         #check if video file was opened successfully
         if not open_video_file.isOpened():
-            logging.warning("Error:Could not open video file.")
+            raise RuntimeError(f"Error:Could not open video file: {video_path}")
         else:
             logging.info("Video file opened successfully!")
-        is_frame_captured, frame = open_video_file.read()
-        if is_frame_captured:
-            cv2.imshow("First frame", frame)
-            cv2.waitKey(0)
-            cv2.destroyAllWindows()
-        else:
-            print("Error could not read the frame.")
+        #Get video properties (eg: frame count)
+        frame_count = int(open_video_file.get(cv2.CAP_PROP_FRAME_COUNT))
+        #getting frames per second
+        frame_per_second = open_video_file.get(cv2.CAP_PROP_FPS)
+        logging.info(f"Total frames: {frame_count}, frames per second: {frame_per_second}")
+        #read and display each frame of the video
+        while True:
+            is_frame_captured, frame = open_video_file.read()
+            frames.append(frame)
+            if not is_frame_captured:
+                logging.info("End of the video.")
+                break
+                #maybe add an exception here
+            cv2.imshow("Video frame", frame)
+            #wait for 1 min for key press to continue or exit if 'q' is pressed
+            if cv2.waitKey(1) & 0xFF == ord('q'):
+                break
+        cv2.destroyAllWindows()
+        return frames
