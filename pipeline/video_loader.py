@@ -2,9 +2,7 @@ from pathlib import Path
 import logging
 
 class VideoLoader:
-    def __init__(self):
-        self.logger = logging.getLogger()
-        
+    @staticmethod    
     def user_input(path: Path) -> bool:
         '''
         Takes the path from the user to find the video that needs to be processed

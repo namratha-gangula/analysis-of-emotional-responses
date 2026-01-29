@@ -4,16 +4,17 @@ from pathlib import Path
 import cv2
 
 class FrameExtractor:
-    def __init__(self):
-        pass
+    @staticmethod
     def extract_frame(video_path: Path) -> list: # return list of frames
         '''
         Extract the frame from the video and return the result.
+        Frame is a numpy array.
+        Frames is a list of numpy arrays.
         '''
         frames = []
         open_video_file = cv2.VideoCapture(video_path)
-        logging.info("Path given by the user to the location of the video", Path(video_path).resolve())
-        logging.info("Does the path exist?:", Path(video_path).exists())
+        logging.info("Path given by the user to the location of the video:%s", Path(video_path).resolve())
+        logging.info("Does the path exist?:%s", Path(video_path).exists())
         #check if video file was opened successfully
         if not open_video_file.isOpened():
             raise RuntimeError(f"Error:Could not open video file: {video_path}")
@@ -29,7 +30,6 @@ class FrameExtractor:
             is_frame_captured, frame = open_video_file.read()
             frames.append(frame)
             if not is_frame_captured:
-                logging.info("End of the video.")
                 break
                 #maybe add an exception here
             cv2.imshow("Video frame", frame)

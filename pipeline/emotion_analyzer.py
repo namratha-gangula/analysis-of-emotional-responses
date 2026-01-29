@@ -1,13 +1,21 @@
 #extract emotion from the image
 import logging
+from deepface import DeepFace
 
-class emotionAnalyzer:
-    def __init__(self):
-        pass
-    def analyze_emotion(frame: list) -> dict:
+class EmotionAnalyzer:
+    @staticmethod
+    def analyze_emotion(frame: list) -> list:
         '''
         Analyze all the emotions in the video and return the scores for each emotion
         ("angry","happy","sad")
         '''
-
-        pass
+        try:
+            emotion = DeepFace.analyze(
+                img_path=frame,
+                actions=["emotion"],
+                enforce_detection=False
+            )
+            return emotion
+        except Exception as e:
+            print("Deep face error:", e)
+            return None
