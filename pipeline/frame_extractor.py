@@ -28,9 +28,10 @@ class FrameExtractor:
         #read and display each frame of the video
         while True:
             is_frame_captured, frame = open_video_file.read()
-            frames.append(frame)
+            #frames.append(frame)
             if not is_frame_captured:
                 break
+            frames.append(frame)
                 #maybe add an exception here
             cv2.imshow("Video frame", frame)
             #wait for 1 min for key press to continue or exit if 'q' is pressed

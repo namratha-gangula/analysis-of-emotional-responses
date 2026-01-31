@@ -1,5 +1,3 @@
-#store the results in the csv format
-#what columns will the csv contain? video_name, video_timestamp, dominant_emotion, confidence
 import pandas as pd
 from pathlib import Path
 
@@ -13,10 +11,12 @@ class ResultWriter:
         return output
 
     @staticmethod
-    def writeCSV(results:list[dict], output_path:Path):
+    def writeCSV(results:list[dict], output_path:Path) -> pd.DataFrame | None:
         '''
         Return the CSV file
         '''
+        if not results:
+            return None
         rows = []
         for frame in results:
             face = frame[0]
@@ -28,3 +28,4 @@ class ResultWriter:
         mean_series_to_dict['dominant_emotion'] = dominant_emotion
         mean_data_frame = pd.DataFrame([mean_series_to_dict])
         mean_data_frame.to_csv(output_path, index=False)
+        return mean_data_frame

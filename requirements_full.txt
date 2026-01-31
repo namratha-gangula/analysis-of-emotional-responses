@@ -1,0 +1,8 @@
+deepface==0.0.98
+keras==3.13.1
+numpy==2.4.1
+opencv-python==4.13.0.90
+pandas==3.0.0
+pytest==9.0.2
+tensorflow==2.20.0
+tf_keras==2.20.1
