@@ -8,8 +8,10 @@ class FrameExtractor:
     def extract_frame(video_path: Path) -> list: # return list of frames
         '''
         Extract the frame from the video and return the result.
-        Frame is a numpy array.
-        Frames is a list of numpy arrays.
+        Args:
+            video_path: Path where the video is present.
+        Returns:
+            Frame is a numpy array. Frames is a list of numpy arrays. Frames are returned.
         '''
         frames = []
         open_video_file = cv2.VideoCapture(video_path)
@@ -33,9 +35,9 @@ class FrameExtractor:
                 break
             frames.append(frame)
                 #maybe add an exception here
-            cv2.imshow("Video frame", frame)
+            #cv2.imshow("Video frame", frame)
             #wait for 1 min for key press to continue or exit if 'q' is pressed
-            if cv2.waitKey(1) & 0xFF == ord('q'):
-                break
+            #if cv2.waitKey(1) & 0xFF == ord('q'):
+            #    break
         cv2.destroyAllWindows()
         return frames

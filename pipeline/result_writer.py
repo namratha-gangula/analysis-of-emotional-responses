@@ -1,11 +1,14 @@
 import pandas as pd
 from pathlib import Path
+import os
 
 class ResultWriter:
     @staticmethod
     def output_path(video_path:Path):
         video_file_name = video_path.stem
         results_output = Path("results")
+        if os.environ.get("IN_DOCKER") == '1':
+            results_output = Path("/app/results")
         results_output.mkdir(exist_ok=True)
         output = results_output/f"{video_file_name}_emotion.CSV"
         return output
@@ -13,7 +16,14 @@ class ResultWriter:
     @staticmethod
     def writeCSV(results:list[dict], output_path:Path) -> pd.DataFrame | None:
         '''
-        Return the CSV file
+        Save the CSV file in the results folder. This CSV file contains the mean of scores of each
+        emotion such as angry, happy or sad and a column stating the dominating emotion for a video.
+        Args:
+            results: List of dictionaries containing emotion values for each frame in a video
+            output_path: The path where the results are stored
+        Returns:
+            Returns the data frame containing mean scores of each emotion
+            Returns None if the results are empty
         '''
         if not results:
             return None

@@ -6,8 +6,12 @@ class EmotionAnalyzer:
     @staticmethod
     def analyze_emotion(frame: list) -> list:
         '''
-        Analyze all the emotions in the video and return the scores for each emotion
-        ("angry","happy","sad")
+        Analyze the scores for all the emotions in the video
+        Args:
+            frame: A list of numpy arrays
+        Returns:
+            A list of dict containing the scores for each emotion. The emotion with the highest probability
+            is likely the dominant emotion in a frame.
         '''
         try:
             emotion = DeepFace.analyze(

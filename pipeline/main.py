@@ -1,9 +1,13 @@
 import argparse
 import logging
-from emotion_pipeline import EmotionPipeline
+from pipeline.emotion_pipeline import EmotionPipeline
 from pathlib import Path
 
 def main():
+    """
+    Starting point of the code.
+    Takes the input path from the user and sends it to the emotion_pipeline.py for processing.
+    """
     logging.basicConfig(level=logging.INFO)
     logging.info("Starting main")
     parser = argparse.ArgumentParser(description="Arguments to provide the path")
