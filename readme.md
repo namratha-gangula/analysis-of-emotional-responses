@@ -45,17 +45,20 @@ Assumption #2: In this MVP, I used short videos from pexels.com to avoid copyrig
 The design consists of four phases:
 
 Ingest: In this phase, a video is taken as input from the user. 
-> **Note**
-> 
+> [!NOTE]
 > Responsible files: main.py(), video_loader.py  
 Transform: The video is transformed into frames.  
-**Responsible files: frame_extractor.py**  
+> [!NOTE]
+> Responsible files: frame_extractor.py  
 Analyze: The emotion in each frame is analyzed.  
-**Responsible files: emotion_analyzer.py**  
+>[!NOTE]
+> Responsible files: emotion_analyzer.py  
 Summarize: The results of the analysis are shown through a CSV. The dominant emotion in each video is noted.  
-**Responsible files: result_writer.py**  
+> [!NOTE]
+> Responsible files: result_writer.py
 
-**Note: emotion_pipeline.py is the glue that sticks all the phases together. This is done so that separation of concerns is maintained**  
+>[!NOTE]
+> Note: emotion_pipeline.py is the glue that sticks all the phases together. This is done so that separation of concerns is maintained  
 
 
 ---
