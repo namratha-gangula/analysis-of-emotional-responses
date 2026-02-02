@@ -57,8 +57,9 @@ Summarize: The results of the analysis are shown through a CSV. The dominant emo
 > [!NOTE]
 > Responsible files: result_writer.py
 
->[!NOTE]
-> Note: emotion_pipeline.py is the glue that sticks all the phases together. This is done so that separation of concerns is maintained  
+```
+Note: emotion_pipeline.py is the glue that sticks all the phases together. This is done so that separation of concerns is maintained  
+```
 
 
 ---
