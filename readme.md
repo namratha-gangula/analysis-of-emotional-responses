@@ -45,7 +45,7 @@ The design consists of four phases:
 
 Ingest: In this phase, a video is taken as input from the user. 
 ```
-Responsible files: main.py(), video_loader.py  
+Responsible files: main.py, video_loader.py  
 ```
 Transform: The video is transformed into frames.  
 ```
@@ -55,7 +55,7 @@ Analyze: The emotion in each frame is analyzed.
 ```
 Responsible files: emotion_analyzer.py  
 ```
-Summarize: The results of the analysis are shown through a CSV. The dominant emotion in each video is noted.  
+Summarize: The mean of the emotions present in the video is calculated. The results of the analysis are shown in a CSV with individual mean scores for each emotion. The dominant emotion is found to be the emotion having the highest mean value. The dominant emotion in each video is noted.  
 ```
 Responsible files: result_writer.py  
 ```
@@ -75,27 +75,30 @@ git clone https://github.com/namratha-gangula/analysis-of-emotional-responses.gi
 ```
 Move into project directory
 ```
-cd analysis-of-emotional-responses.git
+cd analysis-of-emotional-responses
 ```
-Inside the project directory, create a virtual environment
+Inside the project directory, create a virtual environment. **testenv** is the name of the virtual environment I used. It can be any name.
 ```
 python3 -m testenv venv
 ```
-Activate the virtual environment
+Activate the virtual environment. This command is valid for mac users.
 ```
 source testenv/bin/activate
 ```
-
+Command to activate virtual environment for windows users.
+```
+testenv\Scripts\activate
+```
 Install the system dependencies
 ```
 pip install -r requirements.txt
 ```
-To run the tool, in the command line type
+To run the tool inside the project root within the virtual environment, in the command line type
 ```
 python3 -m pipeline.main --input videos/sad.mp4
 ```
 where videos/sad.mp4 is the path to the video file that needs to be processed. This file can be added to the **videos** directory inside the project root.  
-The result is found inside the **results** directory inside the project root with the name emotionname_emotion.csv.  
+The result is found inside the **results** directory inside the project root with the name **name-of-the-video_emotion.csv**  
 To deactivate the virtual environemnt type
 ```
 deactivate
@@ -104,13 +107,19 @@ deactivate
 ---
 ## Additional Instructions For developers
 
-This application has been dockerized. 
-
-docker run --rm -v $(pwd)/videos:/app/videos -v $(pwd)/results:/app/results emotion-pipeline python -m pipeline.main --input /app/videos/happy.mp4
-
+This application has been dockerized. To build the docker file, first run
+```
 docker build -t emotion-pipeline .
+```
+**emotion_pipeline** is the name of the docker image.  
+To run the docker image,
+```
+docker run --rm -v $(pwd)/videos:/app/videos -v $(pwd)/results:/app/results emotion-pipeline python -m pipeline.main --input /app/videos/happy.mp4
+```
 
-For pytest, inside project root run:
+The project is present inside the **/app** folder in docker. 
+
+The tests have been developed using pytest. They are written in the **tests** folder. For running tests, inside project root run:
 ```
 python -m pytest
 ```
@@ -127,11 +136,20 @@ This section shows the results from the tool. It also shows the tests.
     <img src="images/output_result.png" height = "1200" width = "800"/>
 </p>
 
-The results folder gets auto-generated when the tool is run. The name of the CSV file is determined by the 
+The results folder gets auto-generated when the tool is run. The name of the CSV file is given as 
 ```
 name-of-the-video_emotion.CSV
 ```
+
+An example CSV file in the results folder looks like in the image below.
+
+<p align = "center">
+    <img src="images/csv_output.png" height = "1200" width = "800"/>
+</p>
+
 ### Test output
+
+This shows the results of running tests. Tests are written for **emotion_analyzer**, **frame_extractor** and **result_writer**
 
 <p align = "center">
     <img src="images/test_output.png" height = "1200" width = "800"/>
