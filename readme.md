@@ -12,19 +12,18 @@ She knows that there is a tool out there that can give probability scores for ea
 ---
 
 ## Table of Contents
-- [Design rivers](#design-drivers)
+- [Motivation](#motivation)
 - [Design](#design)
-- [Installation instructions for Shiela](#installation-for-Shiela)
-- [Installation instructions for developers](#installation-for-developers)
-- [Features](#features)
-- [Usage](#usage)
+- [Instructions for Shiela](#instructions-for-Shiela)
+- [Additional instructions for developers](#additional-instructions-for-developers)
+- [Ouput](#output)
 - [Future work](#future-work)
 - [Challenges](#challenges)
 - [Lessons Learnt](#lessons-learnt)
 
 ---
 
-## Design drivers
+## Motivation
 
 I have used Shiela's pain points as the main motivation for driving the development of this project. 
 
@@ -67,32 +66,76 @@ emotion_pipeline.py is the glue that sticks all the phases together. This is don
 
 ---
 
-## Installation For Shiela
-Step-by-step instructions to get the project running locally.
+## Instructions For Shiela
+Step-by-step instructions to get the project running locally.  
 
+Clone the repository from https://github.com/namratha-gangula/analysis-of-emotional-responses/tree/main
+```
+git clone https://github.com/namratha-gangula/analysis-of-emotional-responses.git
+```
+Move into project directory
+```
+cd analysis-of-emotional-responses.git
+```
+Inside the project directory, create a virtual environment
+```
+python3 -m testenv venv
+```
+Activate the virtual environment
+```
+source testenv/bin/activate
+```
 
-# Clone the repository
-git clone <repo-url>
-
-# Move into project directory
-cd <project-folder>
-
-# Install dependencies
+Install the system dependencies
+```
 pip install -r requirements.txt
+```
+To run the tool, in the command line type
+```
+python3 -m pipeline.main --input videos/sad.mp4
+```
+where videos/sad.mp4 is the path to the video file that needs to be processed. This file can be added to the **videos** directory inside the project root.  
+The result is found inside the **results** directory inside the project root with the name emotionname_emotion.csv.  
+To deactivate the virtual environemnt type
+```
+deactivate
+```
 
 ---
-## Installation For developers
+## Additional Instructions For developers
+
+This application has been dockerized. 
+
+docker run --rm -v $(pwd)/videos:/app/videos -v $(pwd)/results:/app/results emotion-pipeline python -m pipeline.main --input /app/videos/happy.mp4
+
+docker build -t emotion-pipeline .
+
+For pytest, inside project root run:
+```
+python -m pytest
+```
+
 ---
 
-## Features
+## Output
 
-This section describes the features built in the project.
+This section shows the results from the tool. It also shows the tests.
 
----
+### Results
 
-## Usage
+<p align = "center">
+    <img src="images/output_result.png" height = "1200" width = "800"/>
+</p>
 
-This section details a GIF of how to use the tool and how to run it. The aim of this section is to help the user run the tool and also show the running features of the tool
+The results folder gets auto-generated when the tool is run. The name of the CSV file is determined by the 
+```
+name-of-the-video_emotion.CSV
+```
+### Test output
+
+<p align = "center">
+    <img src="images/test_output.png" height = "1200" width = "800"/>
+</p>
 
 ---
 
