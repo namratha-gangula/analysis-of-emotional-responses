@@ -32,6 +32,8 @@ Assumption #1: The tool must be easy to use for her. Ease-of-use for her means t
 
 Assumption #2: In this MVP, I used short videos from pexels.com to avoid copyright issues. I chose the videos based on emotions displayed in the video. 
 
+Assumption #3: Architectural needs of the system in the long term could be maintainability, extendibility and scalability. The system also needs to robustly handle processing of large number of videos where large size of the videos also needs to be taken into consideration.
+
 ---
 
 ## Design
